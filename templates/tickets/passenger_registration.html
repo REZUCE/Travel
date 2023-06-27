@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Регистрация пассажиров
+{% endblock %}
+
+{% block content %}
+ <h1>Регистрация пассажиров</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% for form in passenger_forms %}
+        <h2>Пассажир {{ forloop.passenger_count }}</h2>
+        {{ form.as_p }}
+        {% endfor %}
+        <button type="submit">Зарегистрировать</button>
+    </form>
+{% endblock %}

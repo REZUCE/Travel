@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ваш билет</title>
+    <style>
+        .cardWrap {
+            width: 40em;
+            margin: 1em auto;
+            color: #fff;
+            font-family: sans-serif;
+        }
+
+        .card {
+            background: linear-gradient(to bottom, #ffa500 0%, #ffa500 20%, #ecedef 20%, #ecedef 100%);
+            height: 21em;
+            float: left;
+            position: relative;
+            padding: 1em;
+            margin-top: 100px;
+        }
+
+        .cardLeft {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            width: 25em;
+        }
+
+        .cardRight {
+            width: 9em;
+            border-left: 0.18em dashed #fff;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .cardRight:before, .cardRight:after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 0.9em;
+            height: 0.9em;
+            background: #fff;
+            border-radius: 50%;
+            left: -0.5em;
+        }
+
+        .cardRight:before {
+            top: -0.4em;
+        }
+
+        .cardRight:after {
+            bottom: -0.4em;
+        }
+
+        h1 {
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+        }
+
+        h1 span {
+            font-weight: normal;
+        }
+
+        .title, .date_departure_date_arrival, .ticket-type, .number_bus, .name, .birth_date, .document_number {
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+
+        .title h2, .name h2, .birth_date h2, .date_departure_date_arrival h2, .ticket-type h2, .number_bus h2, .document_number h2 {
+            font-size: 0.6em;
+            color: #525252;
+            margin: 0;
+        }
+
+        .title span, .date_departure_date_arrival span, .ticket-type span, .number_bus span, .name span, .birth_date span, .document_number span {
+            font-size: 0.7em;
+            color: #a2aeae;
+        }
+
+        .title {
+            margin: 1.7em 0 0 0;
+        }
+
+        .name, .birth_date, .document_number {
+            margin: 0;
+        }
+
+        .number {
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .number h3 {
+            color: #ffa500;
+            margin: 8em auto 0 auto;
+            font-size: 1em;
+            border-radius: 10px;
+        }
+
+        .number span {
+            display: block;
+            color: #a2aeae;
+        }
+
+
+    </style>
+</head>
+<body>
+<h2><span style="border-bottom: 2px solid #ffa500;">Отправление:</span> <br>Город: {{ send_point.town.town_name }}, <br>Адрес:
+    {{ send_point.adress }}.</h2>
+<h2><span style="border-bottom: 2px solid #ffa500;">Прибытие:</span> <br>Город: {{ points_arrival.town.town_name }},
+    <br>Адрес:
+    {{ points_arrival.adress }}.</h2>
+
+<div class="cardWrap">
+    <div class="card cardLeft">
+        <h1>Star <span>Bus</span></h1>
+        <div class="title">
+            <span>Отправление / Прибытие</span>
+            <h2>{{ send_point.town.town_name }} / {{ points_arrival.town.town_name }}</h2>
+        </div>
+        <div class="date_departure_date_arrival">
+            <span>Дата отправления / Дата прибытия</span>
+            <h2>{{ date_departure }} / {{ date_arrival }}</h2>
+        </div>
+        <div class="ticket-type">
+            <span>Тип билета</span>
+            <h2>{{ ticket_type }}</h2>
+        </div>
+        <div class="number_bus">
+            <span>Автобус / Марка / Водитель</span>
+            <h2>{{ bus_state_number }} / {{ bus_mark }} / {{ driver_name }} {{ driver_lastname }}</h2>
+        </div>
+
+        <hr>
+        <div class="name">
+            <span>ФИО</span>
+            <h2>{{ name }} {{ last_name }} {{ patronymic }}</h2>
+        </div>
+        <div class="document_number">
+            <span>Номер документа</span>
+            <h2>{{ document_number }}</h2>
+        </div>
+        <div class="birth_date">
+            <span>Дата рождения и пол</span>
+            <h2>{{ birth_date }} / {{ gender }}</h2>
+        </div>
+    </div>
+    <div class="card cardRight">
+        <div class="number">
+            <h3>{{ cost_total|floatformat:2 }}</h3>
+            <span>Цена</span>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+<script>
+if (window.history && window.history.pushState) {
+  window.history.pushState({page: 1}, "", "");
+
+  window.addEventListener('popstate', function (event) {
+    if (event.state && event.state.page === 1) {
+      window.location.href = 'http://127.0.0.1:8000/order/passenger/success/';
+    }
+  });
+}
+
+</script>

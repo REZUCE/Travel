@@ -1,0 +1,75 @@
+{% load static %}
+<!-- Footer Start -->
+<footer style="
+" class="footer-content py-3">
+    <div class="container py-md-3">
+        <div class="row footer-top-inner-vv">
+            <div class="col-lg-4 col-sm-12 mt-lg-0 mt-4">
+                <div class="footer-lavi">
+                    <h3 class="mb-3 lavi_title">Навигация</h3>
+                    <hr>
+                    <ul class="list-info-lavi">
+                        <li>
+                            <a href="{% url 'tickets:index_search' %}"><span class="fa fa-angle-double-right"
+                                                                             style="color: black;"
+                                                                             aria-hidden="true"></span>
+                                Главная
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'tickets:index_search' %}"><span class="fa fa-angle-double-right"
+                                                                             style="color: black;"
+                                                                             aria-hidden="true"></span>
+                                Смотреть билеты
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'about:me' %}"><span class="fa fa-angle-double-right " style="color: black;"
+                                                                 aria-hidden="true"></span>
+                                О нас
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'users:profile' %}"><span class="fa fa-angle-double-right "
+                                                                      style="color: black;"
+                                                                      aria-hidden="true"></span>
+                                Профиль
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12 mt-lg-0 mt-4">
+                <div class="footer-lavi">
+                    <h3 class="mb-3 lavi_title">Star Bus</h3>
+                    <hr>
+                    <ul class="last-vv-contact">
+                        <p>Мы хотим изменить рынок автобусных перевозок и привести его к лучшим мировым стандартам
+                            качества
+                            обслуживания пассажиров.
+                        </p>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12 mt-lg-0 mt-4">
+                <div class="footer-lavi">
+                    <h3 class="mb-3 lavi_title">Связаться с нами:</h3>
+                    <hr>
+                    <div class="last-vv-contact">
+                        <p>
+                            <a href="mailto:example@email.com">starbus@example.com</a>
+                        </p>
+                    </div>
+                    <div class="last-vv-contact my-2">
+                        <p>+ 7 977 318 35 46</p>
+                    </div>
+                    <div class="last-vv-contact">
+                        <p>Бакунинская улица,
+                            <br> дом 81 строение 2, Москва.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer End -->

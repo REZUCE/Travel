@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+    <div class="container my-5">
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-body pr    ofile">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="header-profile">
+                                            <h3>Личная информация</h3>
+                                        </div>
+                                        <div class="lastname col-xl-6">
+                                            <h4 class="col-xl-6">Фамилия</h4>
+                                            <p class="card-text">{{ lastname }}</p>
+                                        </div>
+                                        <div class="mail col-xl-6">
+                                            <h4 class="col-xl-6">Почта</h4>
+                                            <p class="card-text">{{ mail }}</p>
+                                        </div>
+                                        <div class="name col-xl-6">
+                                            <h4 class="col-xl-6">Имя</h4>
+                                            <p class="card-text">{{ name }}</p>
+                                        </div>
+
+                                        <div class="login col-xl-6">
+                                            <h4 class="col-xl-6">Логин</h4>
+                                            <p class="card-text">{{ request.user.login }}</p>
+                                        </div>
+                                        <div class="patronymic col-xl-6">
+                                            {% if patronymic is None or patronymic == '' %}
+                                                <h4 class="col-xl-6">Отчество</h4>
+                                                <p class="card-text"><span style="color: red">*</span>Вы не указали при
+                                                    регистрации.</p>
+                                            {% else %}
+                                                <h4 class="col-xl-6">Отчество</h4>
+                                                <p class="card-text">{{ patronymic }}</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="number col-xl-6">
+                                            {% if number is None or number == '' %}
+                                                <h4 class="col-xl-6">Номер телефона</h4>
+                                                <p class="card-text"><span style="color: red">*</span>Вы не указали при
+                                                    регистрации.</p>
+                                            {% else %}
+                                                <h4 class="col-xl-6">Номер телефона</h4>
+                                                <p class="card-text">{{ number }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Служба поддержки</h5>
+                                <p class="card-text">
+                                    <i class="fa-solid fa-phone fa-xs" style="color: #000000;"></i>
+                                    +79773183546
+                                </p>
+                                <p class="card-text">
+                                    <i class="fa-brands fa-telegram fa-lg pe-2" style="color: #000000;">
+                                        <a href="#"></a>
+                                    </i>
+                                    <i class="fa-brands fa-vk fa-lg" style="color: #000000;">
+                                        <a href="#"></a>
+                                    </i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 py-3 text-start">
+                        <a href="{% url 'users:password_change_form' %}"
+                           class="btn btn-primary profile-change-password">Изменить пароль</a>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+{% endblock %}

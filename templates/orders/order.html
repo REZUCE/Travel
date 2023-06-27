@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Выбор типа билета и количество билетов{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="m-verify-panel__item checkout-panel">
+                        <div class="row-slim m-verify-panel__item-row">
+                            <div class="col-xs-12">
+                                <h5 class="m-t-0 m-b-0 h4">Выбор типа билета</h5>
+                                <div class="Style__RequiredFieldsInfo-sc-1jldyf0-4 eHLDdJ">
+                                    <p class="mb-2">Указанные данные необходимы для высчитывания окончательно суммы поездки.</p>
+                                    <p><span style="color: red">*</span>Мы не обслуживаем детей младше 6 лет<span style="color: red">*</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-slim">
+                            <div class="col-md-12 col-sm-12 col-12">
+                                <label class="m-verify-panel__form-label"
+                                       for="id_gender">{{ form.ticket_type.label }}</label>
+                                <div class="form-group">
+                                    {{ form.ticket_type }}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row row-slim">
+                            <div class="col-md-12 col-sm-12 col-12">
+{#                                <label class="m-verify-panel__form-label"#}
+{#                                       for="id_document_type">{{ form.number_tickets.label }}</label>#}
+                                <div class="form-group">
+                                    {{ form.number_tickets }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-slim">
+                            <div class="col-md-12 col-sm-12 col-12">
+                                <button class="btn" id="button_ticket_type" type="submit">Перейти к оформлению билета
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

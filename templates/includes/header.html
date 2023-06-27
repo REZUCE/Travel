@@ -1,0 +1,119 @@
+{% load static %}
+{% block head %}
+
+{% endblock %}
+<!-- Navbar Start -->
+<header id="header" class="">
+    <nav class="navbar navbar-expand-md" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" id="logo" href="{% url 'tickets:index_search' %}">
+                <img src="{% static 'img/logo.png' %}" alt="Star bus" height="40px" width="95px" class="">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            {# Добавлено в спринте #}
+
+            {% comment %}
+      Меню - список пунктов со стандартными классами Bootsrap.
+      Класс nav-pills нужен для выделения активных пунктов
+      {% endcomment %}
+            {% comment %}
+       Django позволяет узнать имя view-функции,
+       которая вызвала текущий шаблон. Это имя доступно в шаблоне в
+       переменной {{ request.resolver_match.view_name }}.
+      {% endcomment %}
+            {% with request.resolver_match.view_name as view_name %}
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                        {#                    flex-grow-1 - это класс, который задает элементам списка навигационной панели возможность занимать свободное пространство внутри контейнера.#}
+                        {#                    pe-3 - это класс, который задает отступ по правому краю у каждого элемента списка навигационной панели на 3 единицы измерения.#}
+                        <li class="nav-item mx-2">
+                            <a class="nav-link navbar-base {% if view_name  == 'tickets:index_search' %}active{% endif %}"
+                               href="{% url 'tickets:index_search' %}">Главная</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link navbar-base {% if view_name  == 'about:me' %}active{% endif %}"
+                               href="{% url 'about:me' %}">О нас</a>
+                        </li>
+                        <li class="nav-item dropdown mx-2" id="support-dropdown">
+                            <a class="nav-link navbar-base dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Служба поддержки
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item-text">Номер службы поддержки:</li>
+                                <li><a class="dropdown-item" href="tel:+79773183546">+7 (977) 318-35-46</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav d-flex justify-content-center align-items-center gap-3">
+                        {#                    justify-content-center - это класс, который центрирует содержимое flex-контейнера по горизонтали.#}
+                        {#                    align-items-center - это класс, который центрирует содержимое flex-контейнера по вертикали.#}
+                        {#                    gap-3 - это класс, который задает промежуток между элементами внутри flex-контейнера на 3 единицы измерения.#}
+                        <li class="nav-item d-flex gap-1">
+                            {% if user.is_authenticated %}
+                                <a class="nav-link navbar-base"
+                                   href="{% url 'users:profile' %}">Профиль</a>
+                                <a class="nav-link navbar-base"
+                                   href="{% url 'users:logout' %}">Выйти</a>
+
+                            {% else %}
+                                <a class="nav-link navbar-base"
+                                   href="{% url 'users:login' %}">Профиль</a>
+
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- Login -->
+                    {#                    <ul class="navbar-nav dropdown-login ms-auto mb-lg-0">#}
+                    {##}
+                    {#                        <li class="nav-item dropdown">#}
+                    {#                            <a class="nav-link navbar-base dropdown-toggle" href="#" role="button" id="dropdownMenuLink"#}
+                    {#                               data-bs-toggle="dropdown" aria-expanded="false">#}
+                    {#                                <i class="far fa-user"></i>#}
+                    {#                            </a>#}
+                    {#                            <ul class="dropdown-menu show" aria-labelledby="navbarDropdown" id="navbarDropdown">#}
+                    {#                                {% if user.is_authenticated %}#}
+                    {#                                        <a class="nav-link navbar-base pe-3"#}
+                    {#                                               {% if view_name  == 'users:password_change_form' %}active{% endif %}"#}
+                    {#                                        href="{% url 'users:password_change_form' %}">Изменить пароль</a>#}
+                    {#                                        <a class="nav-link navbar-base   {% if view_name  == 'users:logout' %}active{% endif %}"#}
+                    {#                                           href="{% url 'users:logout' %}">Выйти</a>#}
+                    {#                                        <p class="nav-link me-3 mb-3" id="login_name">Пользователь: <span#}
+                    {#                                                class="login_name_span">{{ user.login }}</span></p>#}
+                    {#                                {% else %}#}
+                    {#                                    <li class="nav-item navbar-base">#}
+                    {#                                        <a class="nav-link {% if view_name  == 'users:login' %}{% endif %}"#}
+                    {#                                           href="{% url 'users:login' %}">Профиль</a>#}
+                    {#                                    </li>#}
+                    {#                                {% endif %}#}
+                    {#                            </ul>#}
+                    {#                        </li>#}
+                    {##}
+                    {##}
+                    {#                    </ul>#}
+                    <!-- Login End -->
+                </div>
+            {% endwith %}
+        </div>
+    </nav>
+</header>
+<!-- Navbar End -->
+<script>
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            document.getElementById("header").classList.add("fixed-top");
+        } else {
+            document.getElementById("header").classList.remove("fixed-top");
+        }
+    }
+</script>

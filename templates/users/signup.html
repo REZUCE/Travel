@@ -1,0 +1,143 @@
+{# templates/users/signup.html#}
+{% extends "base.html" %}
+{% block title %}Зарегистрироваться{% endblock %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8 p-5">
+            <div class="card">
+                <div class="card-header">
+                    Зарегистрироваться
+                </div>
+                <div class="card-body">
+                    {% load user_filters %}
+                    {# Этот блок будет показан, если в форме есть ошибки #}
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    {{ error|escape }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ error|escape }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="post" action="{% url 'users:signup' %}">
+                        {% csrf_token %}
+
+                        {# Выводим поля в цикле, по отдельности #}
+                        {% for field in form %}
+                            <div class="form-group row my-3 p-3">
+
+                                <label for="{{ field.id_for_label }}">
+                                    {{ field.label }}
+                                    {# Проверяет яляется ли поле обязательным #}
+                                    {% if field.field.required %}
+                                        <span class="required text-danger">*</span>
+                                    {% endif %}
+                                </label>
+                                <div id="error-message"></div>
+                                {% if field.id_for_label == 'id_password1' %}
+                                    <input type="password" name="password1" autocomplete="new-password"
+                                           class="form-control" required="" id="id_password1" maxlength="25">
+                                {% elif field.id_for_label == 'id_password2' %}
+                                    <input type="password" name="password2" autocomplete="new-password"
+                                           class="form-control" required="" id="id_password2" maxlength="25">
+                                {% else %}
+
+                                    {{ field|addclass:'form-control' }}
+                                {% endif %}
+
+
+                                {# Высвечивает подсказку, если она есть в модели django #}
+                                {% if field.help_text %}
+                                    <small id="{{ field.id_for_label }}-help" class="form-text text-muted">
+                                        {{ field.help_text|safe }}
+                                    </small>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary login">
+                                Зарегистрироваться
+                            </button>
+                        </div>
+                    </form>
+                </div> <!-- card body -->
+            </div> <!-- card -->
+        </div> <!-- col -->
+    </div> <!-- row -->
+    <script>
+        const lastNameInput = document.getElementById('id_lastname');
+        lastNameInput.addEventListener('input', function (event) {
+            const inputText = event.target.value;
+            const lettersOnly = /^[a-zA-Zа-яА-ЯёЁ\s]*$/;
+            if (!lettersOnly.test(inputText)) {
+                event.target.value = inputText.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '');
+            }
+        });
+        const NameInput = document.getElementById('id_name');
+        NameInput.addEventListener('input', function (event) {
+            const inputText = event.target.value;
+            const lettersOnly = /^[a-zA-Zа-яА-ЯёЁ\s]*$/;
+            if (!lettersOnly.test(inputText)) {
+                event.target.value = inputText.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '');
+            }
+        });
+        const PatronymicInput = document.getElementById('id_patronymic');
+        PatronymicInput.addEventListener('input', function (event) {
+            const inputText = event.target.value;
+            const lettersOnly = /^[a-zA-Zа-яА-ЯёЁ\s]*$/;
+            if (!lettersOnly.test(inputText)) {
+                event.target.value = inputText.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '');
+            }
+        });
+        const LoginNameInput = document.getElementById('id_login');
+        LoginNameInput.addEventListener('input', function (event) {
+            const inputText = event.target.value;
+            const lettersOnly = /^[a-zA-Zа-яА-ЯёЁ0-9]*$/;
+            if (!lettersOnly.test(inputText)) {
+                event.target.value = inputText.replace(/[^a-zA-Zа-яА-ЯёЁ0-9]/g, '');
+            }
+        });
+        const numberInput = document.getElementById('id_number');
+        numberInput.addEventListener('input', function () {
+            const value = numberInput.value;
+            if (/^(8|\+7)\d{10}$/.test(value)) { // проверяем формат номера
+                numberInput.setCustomValidity(''); // убираем сообщение об ошибке
+            } else {
+                numberInput.setCustomValidity('Введите корректный номер в формате +7XXXXXXXXXX или 8XXXXXXXXXX'); // выводим сообщение об ошибке
+            }
+        });
+    </script>
+    <script>
+        const passwordFields = document.querySelectorAll("#id_password1, #id_password2");
+
+        passwordFields.forEach(field => {
+            field.addEventListener("keypress", (event) => {
+                const key = event.key;
+                const latinPattern = /^[a-zA-Z0-9]+$/; // регулярное выражение, которое ищет только латинские буквы и цифры
+                const specialCharacters = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/; // регулярное выражение, которое ищет специальные символы
+
+                if (!latinPattern.test(key) && specialCharacters.test(key)) {
+                    event.preventDefault(); // отменяем действие по умолчанию (ввод символа)
+                    field.setCustomValidity("В пароле разрешены только латинские буквы и цифры, без специальных символов"); // устанавливаем сообщение об ошибке
+                } else if (!latinPattern.test(key)) {
+                    event.preventDefault(); // отменяем действие по умолчанию (ввод символа)
+                    field.setCustomValidity("В пароле разрешены только латинские буквы и цифры"); // устанавливаем сообщение об ошибке
+                } else {
+                    field.setCustomValidity(""); // очищаем сообщение об ошибке, если введенный символ корректен
+                }
+            });
+
+            field.addEventListener("input", () => {
+                field.setCustomValidity(""); // очищаем сообщение об ошибке, если пользователь меняет содержимое поля
+            });
+        });
+    </script>
+
+{% endblock %}

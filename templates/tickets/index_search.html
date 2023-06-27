@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load user_filters %}
+
+{% block title %}Star bus{% endblock %}
+
+{% block content %}
+    <!-- Home Section Start -->
+    <div class="home">
+        <div class="content">
+            <h5>Добро пожаловать!</h5>
+            <p>На данном сайте вы можете посмотреть все актуальные билеты на автобусы. По <br> удобному вам маршруту.
+            </p>
+        </div>
+        <!-- banner -->
+        <div class="banner" id="home">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 px-lg-3 px-0">
+                        <div class="banner-form-w3 ml-lg-5">
+                            <div class="padding">
+                                <form class="" id="search" method="post">
+                                    {% csrf_token %}
+                                    <h5 class="mb-3">Поиск билета</h5>
+                                    <div class="form-style-w3layout">
+                                        {% for field in form %}
+
+                                            {{ field|addclass:'form-style' }}
+
+                                        {% endfor %}
+                                        <button Class="btn">Поиск</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Section End -->
+
+{% endblock %}
+
+<script>
+const input = document.getElementById('id_date_time_departure');
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+const minDate = `${currentYear}-01-01`;
+const maxDate = `${currentYear}-12-31`;
+input.min = minDate;
+input.max = maxDate;
+
+</script>

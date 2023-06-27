@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Бронирование мест в автобусе
+{% endblock %}
+
+{% block content %}
+    <h1>Выберите количество мест</h1>
+
+    <p>{{ message }}</p>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="num_seats">Количество мест:</label>
+        <input type="number" name="num_seats" id="num_seats" value="1" min="1" max="{{ timesheet.passenger_count }}">
+
+        <button type="submit">Зарезервировать</button>
+    </form>
+    <p>Свободных мест: {{ timesheet.free_place }}</p>
+{% endblock %}

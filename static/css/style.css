@@ -1,0 +1,704 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+    font-family: 'Lato', sans-serif;
+}
+
+/*Navbar Start*/
+#navbar {
+    background-color: #f9f9f9;
+}
+
+.navbar-nav {
+    margin-left: 20px;
+}
+
+
+.nav-item .nav-link.navbar-base {
+    font-size: 16px;
+    font-weight: 550;
+    color: black;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.5s ease;
+
+}
+
+.nav-item .nav-link.navbar-base:hover {
+    background: #ffa500;
+    color: white;
+}
+
+.navbar-nav .dropdown-menu.show {
+    right: 0;
+    left: auto;
+}
+
+
+/*Navbar End*/
+
+/*Home and Search Start*/
+.home {
+    width: 100%;
+    height: 120vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url(/static/img/home_search.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.home .content {
+    text-align: center;
+    padding-top: 100px;
+}
+
+.home .content h5 {
+    color: white;
+    font-size: 38px;
+    font-weight: 500;
+    text-shadow: 2px 2px black;
+}
+
+.home .content h5 {
+    color: white;
+    font-size: 38px;
+    font-weight: 500;
+    text-shadow: 2px 2px black;
+    margin-bottom: 30px;
+}
+
+.home .content p {
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    text-shadow: 2px 2px black;
+    margin-bottom: 30px;
+    margin-top: 5px;
+}
+
+
+@media (max-width: 850px) {
+    .home {
+        background-position: 50%;
+    }
+}
+
+@media (max-width: 450px) {
+    .home .content h5 {
+        font-size: 25px;
+    }
+
+    .home .content h1 {
+        font-size: 38px;
+    }
+
+    .home .content p {
+        font-size: 13px;
+    }
+}
+
+.banner-form-w3 {
+    padding: 7px 0;
+    box-sizing: border-box;
+}
+
+
+.form-style-w3layout input[type="text"],
+.form-style-w3layout input[type="date"],
+select {
+    outline: none;
+    font-size: 14px;
+    border: none;
+    color: black;
+    background: white;
+    letter-spacing: 0.5px;
+    padding: 14px 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.form-style-w3layout button.btn {
+    color: white;
+    background: #ffa500;
+    border: 1px solid black;
+    padding: 14px 0;
+    outline: none;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 15px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: 0.5s ease;
+}
+
+.form-style-w3layout button.btn:hover {
+    color: #ffa500;
+    background: white;
+    border: 1px solid black;
+}
+
+.form-style {
+    margin-bottom: 5px;
+}
+
+.padding {
+    padding: 1.5em;
+    background-color: rgba(1, 17, 68, 0.17);
+}
+
+.padding h5 {
+    font-weight: 700;
+    font-style: normal;
+    color: white;
+    font-size: 20px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+/*Home and Search Section End*/
+
+/*Login Button Start*/
+.btn.login {
+    font-size: 16px;
+    font-weight: 550;
+    font-family: 'Lato', sans-serif;
+    color: black;
+    letter-spacing: 1px;
+}
+
+#login_name {
+    font-size: 16px;
+    font-weight: 550;
+    font-family: 'Lato', sans-serif;
+    color: black;
+    letter-spacing: 1px;
+
+}
+
+.login_name_span {
+    font-size: 16px;
+    font-weight: 550;
+    font-family: 'Lato', sans-serif;
+    color: orange;
+    text-shadow: 0.5px 0.5px black;
+    letter-spacing: 1px;
+}
+
+.align-items-center.d-flex {
+    margin: 8px;
+}
+
+button.btn-primary.login {
+    background: #ffa500;
+    color: white;
+    border-color: black;
+    transition: 0.5s ease;
+}
+
+button.btn-primary.login:active {
+    background: white;
+    color: #ffa500;
+    border-color: black;
+}
+
+button.btn-primary.signup {
+    background: #ffa500;
+    color: white;
+    border-color: black;
+    transition: 0.5s ease;
+}
+
+button.btn-primary.signup:active {
+    background: white;
+    color: #ffa500;
+    border-color: black;
+}
+
+button.btn-primary.change_password {
+    background: #ffa500;
+    color: white;
+    border-color: black;
+    transition: 0.5s ease;
+}
+
+button.btn-primary.change_password:active {
+    background: white;
+    color: #ffa500;
+    border-color: black;
+}
+
+/*Login button End*/
+
+/* Footer Start */
+.footer-content {
+    background: #5e5d5d;
+
+}
+
+
+.footer-content h2 a {
+    font-size: 1.2em;
+    color: #fff;
+    padding: 0;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 2px black;
+    position: relative;
+    text-transform: uppercase;
+}
+
+
+.con-gd button.btn {
+    margin-left: auto;
+    padding: 15px 5px;
+    border: 0px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+/* footer grids */
+
+ul.list-info-lavi {
+    list-style: none;
+}
+
+ul.list-info-lavi li {
+    list-style: none;
+    margin: 0.8em 0;
+
+}
+
+
+.last-vv-contact p {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    color: white;
+}
+
+
+.list-info-lavi li a {
+    color: #ffffff;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+}
+
+h3.lavi_title {
+    font-size: 1.4em;
+    color: #fff;
+    font-weight: 500;
+}
+
+.last-vv-contact a {
+    color: #f1f1f1;
+}
+
+.vv-icons li {
+    display: inline-block;
+    margin: 0 1em;
+}
+
+.vv-icons li a span {
+    color: #333;
+    font-size: 1.2em;
+}
+
+.vv-icons li a span:hover {
+    color: #f4b200;
+}
+
+.news-letter-vv {
+    padding: 60px 80px;
+    background: #fdbd10;
+}
+
+p.news-para {
+    color: #333;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+ul.list-info-lavi span {
+    margin-right: 0.5em;
+    color: #999;
+}
+
+.feature-grids.team span {
+    font-size: 1.5em;
+}
+
+/* Footer End */
+
+/* About Start */
+.main.about__main {
+    padding-top: 30px;
+    width: 100%;
+    height: 120vh;
+    background-image: url(https://busfor.ru/assets/new/about_bus-e69dba717168b6cd3d7500d8e3806af6130f64da2df5266c2f527931c512e380.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.about__main-information {
+    padding-top: 50px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.responsive-container {
+    padding: 0 32px;
+    width: 100%;
+    height: 100%;
+    max-width: 1044px;
+    margin: 0 auto;
+}
+
+/* About End */
+
+/* Ticket Search Results Start */
+.tickets-h1 h1 {
+    color: #ffa500;
+    text-align: center;
+    padding-bottom: 35px;
+    font-size: 38px;
+    font-weight: 500;
+    text-shadow: 2px 2px black;
+}
+
+.btn-primary.buy-button {
+    background: #ffa500;
+    color: white;
+    border-color: black;
+    transition: 0.5s ease;
+}
+
+.btn.btn-primary.buy-button:hover {
+    background: white;
+    color: #ffa500;
+    border-color: black;
+}
+
+.tickets {
+    padding-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06);
+    /*border-radius: 30px;*/
+    font-size: 16px;
+    font-weight: 550;
+    font-family: 'Lato', sans-serif;
+    color: black;
+    letter-spacing: 1px;
+    transition: all .3s;
+
+}
+
+
+.tickets:hover {
+    box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75);
+}
+
+.tickets-buy {
+    padding-left: 20px;
+}
+
+.tickets-info-place {
+    padding-left: 20px;
+}
+
+.tickets-buy-btn {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 30px;
+
+}
+
+
+.tickets-info-bus {
+    padding-left: 20px;
+}
+
+.date-departure-arrival {
+    display: flex;
+    align-items: center;
+}
+
+.tickets-info-departure {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.tickets-info-arrival {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.tickets-info-bus {
+    margin-top: 30px;
+}
+
+/* Ticket Search Results End */
+
+/* Ticket Count Start */
+.tickets_count .tickets_count_h1 {
+    padding-top: 30px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+/* Ticket Count End */
+
+/* Passenger Start */
+.checkout-panel {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 32px;
+    background-color: #fff;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
+}
+
+.m-verify-panel__item-row {
+    margin-bottom: 15px;
+}
+
+.row-slim {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.row-slim [class*=col-] {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.col-xs-12 {
+    width: 100%;
+}
+
+.m-b-0 {
+    margin-top: 0;
+}
+
+.h4 {
+    line-height: 1.36364em;
+}
+
+.eHLDdJ {
+    position: relative;
+    padding-left: 32px;
+    margin: 5px 0px 24px -32px;
+}
+
+.eHLDdJ::after {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 4px;
+    content: "";
+    background-color: rgb(255, 132, 0);
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.m-verify-panel__form-label {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #a7a7a7;
+    text-transform: none;
+}
+
+label {
+    margin: 25px 0 15px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #a7a7a7;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+div {
+    display: block;
+}
+
+.form-control {
+    position: relative;
+    padding: 11px 15px;
+    font-size: 1.14286em;
+    text-overflow: ellipsis;
+    border-radius: 6px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    display: block;
+    width: 100%;
+    height: 46px;
+    padding: 11px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #424543;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d2d2d2;
+
+}
+
+.select .custom-select__container {
+    position: relative;
+    border-color: #d2d2d2;
+}
+
+/* order start */
+
+
+#button_ticket_type {
+    color: white;
+    background: #ffa500;
+    border: 1px solid black;
+    padding: 14px 0;
+    outline: none;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 15px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: 0.5s ease;
+}
+
+#button_ticket_type:hover {
+    color: #ffa500;
+    background: white;
+    border: 1px solid black;
+}
+
+
+/* order end */
+#button_buy_tickets {
+    color: white;
+    background: #ffa500;
+    border: 1px solid black;
+    padding: 14px 0;
+    outline: none;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 15px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: 0.5s ease;
+}
+
+#button_buy_tickets:hover {
+    color: #ffa500;
+    background: white;
+    border: 1px solid black;
+}
+
+/* buy start */
+.checkout__payment-header {
+    margin-bottom: 11px;
+    padding-bottom: 13px;
+    font-size: 26px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* end */
+/* Passenger and Order End */
+
+/* Profile Start */
+.card-body.profile p span {
+    color: black;
+    font-size: 16px;
+    font-weight: 550;
+    letter-spacing: 1px;
+}
+
+.btn.btn-primary.profile-change-password {
+    background: #ffa500;
+    color: white;
+    border-color: black;
+    transition: 0.5s ease;
+}
+
+.btn.btn-primary.profile-change-password:hover {
+    background: white;
+    color: #ffa500;
+    border-color: black;
+}
+
+.header-profile h3 {
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.header-profile h3 {
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.footer-profile h3 {
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.login h4, .mail h4, .name h4, .lastname h4, .patronymic h4, .number h4 {
+    color: #353c4e;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.login p, .mail p, .name p, .lastname p, .patronymic p, .number p {
+    font-size: 25px;
+    padding-bottom: 20px;
+}
+
+.contact p {
+    font-size: 25px;
+}
+
+/* Profile End */

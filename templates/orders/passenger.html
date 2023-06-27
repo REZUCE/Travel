@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% block title %}Покупка билета{% endblock %}
+{% load user_filters %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="m-verify-panel__item checkout-panel">
+                        <div class="row-slim m-verify-panel__item-row">
+                            <div class="col-xs-12">
+                                <h5 class="m-t-0 m-b-0 h4">Оформление билета</h5>
+                                <div class="Style__RequiredFieldsInfo-sc-1jldyf0-4 eHLDdJ">
+                                    <p class="mb-2">Указанные данные необходимы для совершения бронирования и будут
+                                        проверены при
+                                        посадке в автобус.</p>
+                                    <p><span style="color: red">*</span>Мы не обслуживаем детей младше 7 лет<span
+                                            style="color: red">*</span></p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-slim">
+                            <div class="col-md-12">
+                                <div class="row row-slim">
+                                    <div class="col-md-6 col-sm-6 col-6">
+                                        <label class="m-verify-panel__form-label"
+                                               for="id_last_name">{{ form.last_name.label }}</label>
+
+                                        <div class="form-group">
+                                            <input id="id_last_name" type="text" name="last_name"
+                                                   class="form-control" required placeholder="Иванов"
+                                                   autocapitalize="true"
+                                                   value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-6">
+                                        <label class="m-verify-panel__form-label"
+                                               for="id_name">{{ form.name.label }}</label>
+                                        <div class="form-group">
+                                            <input id="id_name" type="text" name="name"
+                                                   class="form-control" required placeholder="Иван"
+                                                   autocapitalize="true"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-6">
+                                        <label class="m-verify-panel__form-label"
+                                               for="id_patronymic">{{ form.patronymic.label }}</label>
+                                        <div class="form-group">
+                                            <input id="id_patronymic" type="text" name="patronymic"
+                                                   class="form-control" required placeholder="Иванович"
+                                                   autocapitalize="true"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-6">
+                                        <label class="m-verify-panel__form-label"
+                                               for="id_birth_date">{{ form.birth_date.label }}</label>
+                                        <div class="form-group">
+                                            <input
+                                                    id="id_birth_date" name="birth_date"
+                                                    type="text" class="form-control" required placeholder="дд.мм.гггг"
+                                                    maxlength="10">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-slim">
+                            <div class="col-md-6 col-sm-6 col-6">
+                                <label class="m-verify-panel__form-label"
+                                       for="id_gender">{{ form.gender.label }}</label>
+                                <div class="form-group">
+                                    {{ form.gender }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-6">
+                                <label class="m-verify-panel__form-label"
+                                       for="id_document_type">{{ form.document_type.label }}</label>
+                                <div class="form-group">
+                                    {{ form.document_type }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-slim">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="m-verify-panel__form-label"
+                                       for="id_document_number">{{ form.document_number.label }}</label>
+                                <div class="form-group">
+                                    <input
+                                            id="id_document_number" name="document_number"
+                                            type="text" class="form-control" required
+                                            placeholder="Паспорт:серия и номер, Свидетельство: 6 цифр снизу"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkout-panel checkout__payment">
+
+                        <div class="checkout__payment-header">
+                            <span>К оплате</span>
+                            <span>
+                                <div class="text-center">
+                                    <span class="price">
+                                        <span class="price__ammount">
+                                            {{ order_cost_total|floatformat:2 }}
+                                            <span class="price__fraction">
+
+                                                <span>руб</span>
+
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </span>
+                        </div>
+                        <button class="btn" id="button_buy_tickets" type="submit">Оформить билет</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateMaxLength() {
+            var document_type = document.getElementById('id_document_type').value;
+            document.getElementById('id_document_number').value = '';
+            var document_number = document.getElementById('id_document_number');
+            if (document_type === 'passport') {
+                document_number.maxLength = 10;
+            } else if (document_type === 'birth_certificate') {
+                document_number.maxLength = 6;
+            }
+            document_number.pattern = "\\d*"; // разрешаем только цифры
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateMaxLength();
+            document.getElementById('id_document_type').addEventListener('change', function () {
+                updateMaxLength();
+            });
+
+            var document_number = document.getElementById('id_document_number');
+            document_number.addEventListener('paste', function (event) {
+                var clipboardData = event.clipboardData || window.clipboardData;
+                var pastedData = clipboardData.getData('Text');
+                if (/\D/.test(pastedData)) { // проверяем, содержит ли вставленный текст буквы
+                    event.preventDefault(); // отменяем вставку, если текст содержит буквы
+                }
+            });
+
+            document_number.addEventListener('keydown', function (event) {
+                if (event.key == 'Backspace' || event.key == 'Delete') {
+                    return; // разрешаем удаление цифр
+                }
+                if (event.key.match(/[^\d]/)) { // проверяем, нажата ли клавиша, соответствующая буквам
+                    event.preventDefault(); // отменяем ввод букв
+                }
+            });
+        });
+    </script>
+    {#    <script>#}
+    {#        const birthDateInput = document.getElementById('id_birth_date');#}
+    {#        birthDateInput.addEventListener('input', function () {#}
+    {#            const value = birthDateInput.value;#}
+    {#            if (/^\d{2}\.\d{2}\.\d{4}$/.test(value)) {#}
+    {#                const [day, month, year] = value.split('.');#}
+    {#                const birthDate = new Date(`${year}-${month}-${day}`);#}
+    {#                const currentDate = new Date();#}
+    {#                const diffInMilliseconds = currentDate - birthDate;#}
+    {#                const diffInYears = diffInMilliseconds / (1000 * 60 * 60 * 24 * 365.25); // учитываем високосные года#}
+    {#                if (!isNaN(birthDate.getTime()) && year >= 1920 && year <= 2015 && diffInYears >= 7 &&#}
+    {#                    month >= 1 && month <= 12 && day >= 1 && day <= new Date(year, month, 0).getDate()) { // проверяем, что дата корректна и пользователю 6 лет или больше, а также что месяц и день валидны#}
+    {#                    birthDateInput.setCustomValidity(''); // убираем сообщение об ошибке#}
+    {#                } else if (diffInYears < 7 || year < 1920 || year > 2015) { // если возраст меньше 6 лет или год не попадает в диапазон, выводим сообщение об ошибке#}
+    {#                    birthDateInput.setCustomValidity('Мы не обслуживаем детей младше 7 лет');#}
+    {#                } else { // в остальных случаях выводим сообщение об ошибке о некорректной дате#}
+    {#                    birthDateInput.setCustomValidity('tyt');#}
+    {#                }#}
+    {#            } else { // если дата не соответствует формату, выводим сообщение об ошибке#}
+    {#                birthDateInput.setCustomValidity('Введите корректно дату и в формате дд.мм.гггг');#}
+    {#            }#}
+    {#        });#}
+    {#    </script>#}
+    <script>
+        const birthDateInput = document.getElementById('id_birth_date');
+        birthDateInput.addEventListener('input', function () {
+            const value = birthDateInput.value;
+            if (/^\d{2}\.\d{2}\.\d{4}$/.test(value)) {
+                const [day, month, year] = value.split('.');
+                const birthDate = new Date(`${year}-${month}-${day}`);
+                const currentDate = new Date();
+                const diffInMilliseconds = currentDate - birthDate;
+                const diffInYears = diffInMilliseconds / (1000 * 60 * 60 * 24 * 365.25); // учитываем високосные года
+                if (!isNaN(birthDate.getTime()) && diffInYears >= 7 &&
+                    month >= 1 && month <= 12 && day >= 1 && day <= new Date().getFullYear() - 7) { // проверяем, что дата корректна и пользователю 6 лет или больше, а также что месяц и день валидны
+                    birthDateInput.setCustomValidity(''); // убираем сообщение об ошибке
+                } else if (diffInYears < 7) { // если возраст меньше 6 лет или год не попадает в диапазон, выводим сообщение об ошибке
+                    birthDateInput.setCustomValidity('Мы не обслуживаем детей младше 7 лет');
+                } else { // в остальных случаях выводим сообщение об ошибке о некорректной дате
+                    birthDateInput.setCustomValidity('Введите корректно дату и в формате дд.мм.гггг');
+                }
+            } else { // если дата не соответствует формату, выводим сообщение об ошибке
+                birthDateInput.setCustomValidity('Введите корректно дату и в формате дд.мм.гггг');
+            }
+        });
+    </script>
+    <script>
+        const lastNameInput = document.getElementById('id_last_name');
+        lastNameInput.addEventListener('input', function (event) {
+            const inputText = event.target.value;
+            const lettersOnly = /^[a-zA-Zа-яА-ЯёЁ\s]*$/;
+            if (!lettersOnly.test(inputText)) {
+                event.target.value = inputText.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '');
+            }
+        });
+    </script>
+    <script>
+        const NameInput = document.getElementById('id_name');
+        NameInput.addEventListener('input', function (event) {
+            const inputText = event.target.value;
+            const lettersOnly = /^[a-zA-Zа-яА-ЯёЁ\s]*$/;
+            if (!lettersOnly.test(inputText)) {
+                event.target.value = inputText.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '');
+            }
+        });
+    </script>
+    <script>
+        const PatronymicInput = document.getElementById('id_patronymic');
+        PatronymicInput.addEventListener('input', function (event) {
+            const inputText = event.target.value;
+            const lettersOnly = /^[a-zA-Zа-яА-ЯёЁ\s]*$/;
+            if (!lettersOnly.test(inputText)) {
+                event.target.value = inputText.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '');
+            }
+        });
+    </script>
+    <script>
+        const PatronymicInput = document.getElementById('id_patronymic');
+        PatronymicInput.addEventListener('input', function (event) {
+            const inputText = event.target.value;
+            const lettersOnly = /^[a-zA-Zа-яА-ЯёЁ\s]*$/;
+            if (!lettersOnly.test(inputText)) {
+                event.target.value = inputText.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '');
+            }
+        });
+    </script>
+{% endblock %}

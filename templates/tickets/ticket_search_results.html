@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container justify-content-center">
+        <div class="tickets-h1">
+            <h1>Результаты поиска билетов:</h1>
+        </div>
+    </div>
+    <div class="container">
+        {% if tickets|length > 0 %}
+            <div class="row">
+                {% for ticket in tickets %}
+                    {% with ticket.date_time_departure|date:"Y-m-d H:i:s" as ticket_departure %}
+                        {% with now|date:"Y-m-d H:i:s" as now %}
+                            {% if ticket.free_place > 0 and ticket_departure > now %}
+                                <div class="col-md-12">
+                                    <div class="tickets">
+                                        <div class="date-departure-arrival ">
+                                            <div class="tickets-info-departure">
+                                                <p>{{ ticket.date_time_departure }}</p>
+                                                <p>Город: {{ ticket.direction.send_point.town }}</p>
+                                                <p>{{ ticket.direction.send_point.adress }}</p>
+                                            </div>
+                                            <div class="tickets-info-arrival">
+                                                <p>{{ ticket.date_time_arrival }}</p>
+                                                <p>Город: {{ ticket.direction.points_arrival.town }}</p>
+                                                <p>{{ ticket.direction.points_arrival.adress }}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="tickets-info-bus">
+                                            <p>Номер автобуса: {{ ticket.bus.state_number }}</p>
+                                        </div>
+                                        <div class="tickets-info-place">
+                                            <p>Осталось мест в автобусе: {{ ticket.free_place }}</p>
+                                        </div>
+                                        <div class="tickets-buy">
+                                            <p class="tickets-price">Примерная стоимость: {{ ticket.direction.cost_route }}</p>
+                                        </div>
+                                        <div class="tickets-buy-btn">
+                                            <a href="{% url 'orders:order' timesheet_id=ticket.pk %}"
+                                               class="btn btn-primary buy-button mb-5">Купить</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                    {% endwith %}
+                {% empty %}
+                    <div class="col-md-12">
+                        <div class="tickets-none">
+                            <p>Билетов не найдено</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tickets-none">
+                            <p>Билетов не найдено</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

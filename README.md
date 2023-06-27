@@ -59,8 +59,10 @@
     ```
 
 5. Подключите бд MySQL в settings.py
+   ![image](https://github.com/REZUCE/Travel/assets/94435629/84f66fed-c9d7-4fa0-9bd7-125940a16174)
+
    
-6. В папке с файлом manage.py выполните миграции:
+7. В папке с файлом manage.py выполните миграции:
    windows
 
     ```bash
@@ -73,7 +75,7 @@
         python3 manage.py migrate
     ```
 
-7. В папке с файлом manage.py выполните команду:
+8. В папке с файлом manage.py выполните команду:
 
     windows
 

@@ -58,8 +58,7 @@
         pip install -r requirements.txt
     ```
 
-5. Установите зависимости из файла requirements.txt
-   Нужно подключить базу mysql в настройках.
+5. Подключите бд MySQL в settings.py
    
 6. В папке с файлом manage.py выполните миграции:
    windows

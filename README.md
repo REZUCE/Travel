@@ -59,6 +59,7 @@
     ```
 
 5. Подключите бд MySQL в settings.py
+
    ![image](https://github.com/REZUCE/Travel/assets/94435629/84f66fed-c9d7-4fa0-9bd7-125940a16174)
 
    
